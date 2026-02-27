@@ -1,115 +1,58 @@
-'use client'
-import { useEffect, useRef, useState } from 'react'
-import Link from 'next/link'
-
-function StatItem({ value, suffix, label, isDecimal }: {
-  value: number; suffix: string; label: string; isDecimal?: boolean
-}) {
-  const ref = useRef<HTMLDivElement>(null)
-  const [display, setDisplay] = useState('0')
-  const [animated, setAnimated] = useState(false)
-
-  useEffect(() => {
-    const el = ref.current
-    if (!el) return
-    const obs = new IntersectionObserver(([e]) => {
-      if (e.isIntersecting && !animated) {
-        setAnimated(true)
-        obs.disconnect()
-        const duration = 1600
-        const start = performance.now()
-        const easeOut = (t: number) => 1 - Math.pow(1 - t, 3)
-        const tick = (now: number) => {
-          const t = Math.min((now - start) / duration, 1)
-          const v = easeOut(t) * value
-          setDisplay(isDecimal ? v.toFixed(1).replace('.', ',') : Math.floor(v).toString())
-          if (t < 1) requestAnimationFrame(tick)
-          else setDisplay(isDecimal ? value.toFixed(1).replace('.', ',') : value.toString())
-        }
-        requestAnimationFrame(tick)
-      }
-    }, { threshold: 0.5 })
-    obs.observe(el)
-    return () => obs.disconnect()
-  }, [value, isDecimal, animated])
-
-  return (
-    <div ref={ref} className="hero-stat">
-      <span className="hero-stat-num">{display}{suffix}</span>
-      <span className="hero-stat-label">{label}</span>
-    </div>
-  )
-}
-
 export default function Hero() {
-  const titleRef = useRef<HTMLHeadingElement>(null)
-
-  useEffect(() => {
-    const onScroll = () => {
-      if (!titleRef.current || window.scrollY >= window.innerHeight) return
-      titleRef.current.style.transform = `translateY(${window.scrollY * 0.06}px)`
-    }
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [])
-
   return (
-    <section id="hero" style={{ position: 'relative', minHeight: '100vh', display: 'flex', alignItems: 'center', overflow: 'hidden', background: 'var(--bg)' }}>
+    <>
+      <section id="hero">
+        <div className="hero-bg"></div>
+        
+        
+        
+        <div className="ukraine-map">
+          <svg viewBox="0 0 900 580" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <filter id="mapglow" x="-15%" y="-15%" width="130%" height="130%">
+                <feGaussianBlur stdDeviation="9" result="blur"/>
+                <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+              </filter>
+            </defs>
       
-      {/* Ukraine map background */}
-      <div style={{
-        position: 'absolute', inset: 0,
-        display: 'flex', alignItems: 'center', justifyContent: 'center',
-        opacity: 0.22, pointerEvents: 'none', userSelect: 'none',
-        zIndex: 0,
-      }}>
-        <svg viewBox="0 0 900 450" style={{ width: '85%', maxWidth: 960 }} fill="none" xmlns="http://www.w3.org/2000/svg">
-          {/* Ukraine outline - approximate */}
-          <path
-            d="M 80 230 L 95 200 L 110 185 L 130 175 L 155 165 L 180 158 L 205 152 L 230 148 L 255 143 L 278 138 L 300 132 L 322 128 L 345 124 L 368 121 L 392 119 L 416 118 L 440 119 L 464 121 L 487 124 L 510 128 L 533 133 L 555 138 L 576 144 L 596 151 L 615 159 L 633 168 L 648 179 L 660 192 L 668 207 L 670 222 L 665 238 L 654 252 L 638 264 L 620 274 L 600 283 L 578 291 L 555 298 L 530 304 L 505 309 L 479 313 L 452 316 L 425 317 L 398 317 L 371 315 L 344 311 L 317 306 L 290 299 L 263 291 L 238 281 L 214 270 L 191 257 L 169 243 L 148 232 L 110 225 Z"
-            stroke="#E53935"
-            strokeWidth="1.5"
-            fill="rgba(229,57,53,0.05)"
-          />
-          {/* City dots */}
-          <circle cx="416" cy="218" r="4" fill="#E53935" opacity="0.7"/>
-          <circle cx="290" cy="210" r="3" fill="#E53935" opacity="0.45"/>
-          <circle cx="540" cy="215" r="3" fill="#E53935" opacity="0.45"/>
-          <circle cx="350" cy="235" r="2.5" fill="#E53935" opacity="0.35"/>
-          <circle cx="480" cy="230" r="2.5" fill="#E53935" opacity="0.35"/>
-          <circle cx="190" cy="200" r="2" fill="#E53935" opacity="0.3"/>
-          <circle cx="600" cy="195" r="2" fill="#E53935" opacity="0.3"/>
-          <circle cx="380" cy="270" r="2" fill="#E53935" opacity="0.25"/>
-          {/* Connecting lines */}
-          <line x1="416" y1="218" x2="290" y2="210" stroke="#E53935" strokeWidth="0.5" opacity="0.15"/>
-          <line x1="416" y1="218" x2="540" y2="215" stroke="#E53935" strokeWidth="0.5" opacity="0.15"/>
-          <line x1="416" y1="218" x2="350" y2="235" stroke="#E53935" strokeWidth="0.5" opacity="0.15"/>
-          <line x1="416" y1="218" x2="480" y2="230" stroke="#E53935" strokeWidth="0.5" opacity="0.15"/>
-        </svg>
-      </div>
-
-      <div className="hero-content" style={{ position: 'relative', zIndex: 1 }}>
-        <div className="hero-eyebrow">Медіакіт 2026</div>
-        <h1 ref={titleRef} className="hero-title">
-          МЕРЕЖА<br /><span>ГОЛОВНЕ</span>
-        </h1>
-        <p className="hero-sub">
-          Найбільша регіональна Telegram-мережа України.<br />
-          25 каналів · вся країна · реальна аудиторія
-        </p>
-        <div className="hero-stats">
-          <StatItem value={2.5} suffix="млн" label="підписників" isDecimal />
-          <StatItem value={600} suffix="тис+" label="добове охоплення" />
-          <StatItem value={31} suffix="%" label="середній ERR" />
+            
+            <path d="M 157.9,127.3 L 167.2,160.9 L 173.1,163.5 L 171.9,175.9 L 168.4,175.9 L 166.1,183.9 L 153.2,187.4 L 140.4,198.9 L 131.0,198.9 L 129.8,206.0 L 121.7,206.0 L 120.5,212.2 L 112.3,218.4 L 112.3,241.4 L 101.8,245.8 L 90.1,260.8 L 85.4,260.8 L 86.6,276.7 L 101.8,291.8 L 115.8,298.8 L 133.3,300.6 L 138.0,304.1 L 182.4,306.8 L 189.4,313.0 L 189.4,319.2 L 197.6,321.0 L 221.0,310.3 L 254.9,309.5 L 263.0,305.9 L 265.4,298.0 L 296.9,290.0 L 311.0,290.0 L 330.8,303.3 L 350.7,305.0 L 357.7,312.1 L 365.9,313.0 L 364.7,336.9 L 382.2,343.9 L 383.4,360.7 L 396.2,365.2 L 395.1,374.0 L 357.7,374.0 L 355.4,392.6 L 341.3,404.1 L 334.3,417.3 L 325.0,418.2 L 323.8,429.7 L 334.3,439.5 L 349.5,439.5 L 369.4,432.4 L 381.1,432.4 L 386.9,440.3 L 393.9,441.2 L 403.3,420.0 L 412.6,418.2 L 414.9,412.0 L 423.1,412.0 L 424.3,405.9 L 430.1,405.0 L 430.1,399.7 L 440.7,389.0 L 441.8,382.0 L 452.3,377.6 L 466.4,378.4 L 485.1,396.1 L 509.6,400.5 L 537.6,399.7 L 535.3,408.5 L 522.4,410.3 L 521.3,414.7 L 514.3,414.7 L 506.1,420.9 L 504.9,431.5 L 513.1,436.8 L 530.6,436.8 L 533.0,441.2 L 547.0,443.0 L 552.8,447.4 L 552.8,458.9 L 542.3,464.2 L 543.5,470.4 L 565.7,477.5 L 598.4,473.1 L 605.4,460.7 L 613.6,456.3 L 635.8,453.6 L 640.5,446.5 L 682.5,445.6 L 687.2,430.6 L 693.0,426.2 L 691.9,418.2 L 684.9,412.0 L 669.7,411.2 L 662.7,417.3 L 633.5,418.2 L 633.5,411.2 L 627.6,411.2 L 624.1,404.1 L 619.4,403.2 L 617.1,392.6 L 627.6,390.8 L 628.8,385.5 L 656.8,370.5 L 674.3,369.6 L 679.0,364.3 L 698.9,363.4 L 703.6,355.4 L 716.4,355.4 L 723.4,344.8 L 750.3,343.9 L 756.1,317.4 L 769.0,313.9 L 777.2,303.3 L 807.6,301.5 L 811.1,298.0 L 811.1,285.6 L 816.9,278.5 L 809.9,264.4 L 811.1,255.5 L 814.6,255.5 L 811.1,236.9 L 815.7,232.5 L 813.4,212.2 L 806.4,208.6 L 790.0,211.3 L 786.5,206.0 L 771.3,204.2 L 769.0,200.7 L 751.5,201.6 L 731.6,193.6 L 721.1,198.0 L 710.6,197.1 L 710.6,185.6 L 702.4,180.3 L 690.7,179.5 L 682.5,186.5 L 670.8,186.5 L 666.2,191.0 L 656.8,191.0 L 644.0,184.8 L 625.3,183.9 L 615.9,159.1 L 608.9,158.2 L 605.4,152.9 L 577.4,149.4 L 579.7,125.5 L 565.7,117.6 L 564.5,108.7 L 552.8,100.7 L 520.1,99.0 L 515.4,104.3 L 495.6,100.7 L 485.1,113.1 L 438.3,116.7 L 424.3,142.3 L 390.4,143.2 L 382.2,135.2 L 363.5,136.1 L 362.4,138.8 L 347.2,135.2 L 311.0,134.4 L 308.6,127.3 L 285.2,127.3 L 274.7,120.2 L 199.9,116.7 L 185.9,120.2 L 184.8,125.5 L 171.9,124.6 L 171.9,121.1 L 167.2,121.1 L 163.7,127.3 Z"
+              fill="none" stroke="#E53935" strokeWidth="7" opacity="0.14" filter="url(#mapglow)"/>
+      
+            
+            <path d="M 157.9,127.3 L 167.2,160.9 L 173.1,163.5 L 171.9,175.9 L 168.4,175.9 L 166.1,183.9 L 153.2,187.4 L 140.4,198.9 L 131.0,198.9 L 129.8,206.0 L 121.7,206.0 L 120.5,212.2 L 112.3,218.4 L 112.3,241.4 L 101.8,245.8 L 90.1,260.8 L 85.4,260.8 L 86.6,276.7 L 101.8,291.8 L 115.8,298.8 L 133.3,300.6 L 138.0,304.1 L 182.4,306.8 L 189.4,313.0 L 189.4,319.2 L 197.6,321.0 L 221.0,310.3 L 254.9,309.5 L 263.0,305.9 L 265.4,298.0 L 296.9,290.0 L 311.0,290.0 L 330.8,303.3 L 350.7,305.0 L 357.7,312.1 L 365.9,313.0 L 364.7,336.9 L 382.2,343.9 L 383.4,360.7 L 396.2,365.2 L 395.1,374.0 L 357.7,374.0 L 355.4,392.6 L 341.3,404.1 L 334.3,417.3 L 325.0,418.2 L 323.8,429.7 L 334.3,439.5 L 349.5,439.5 L 369.4,432.4 L 381.1,432.4 L 386.9,440.3 L 393.9,441.2 L 403.3,420.0 L 412.6,418.2 L 414.9,412.0 L 423.1,412.0 L 424.3,405.9 L 430.1,405.0 L 430.1,399.7 L 440.7,389.0 L 441.8,382.0 L 452.3,377.6 L 466.4,378.4 L 485.1,396.1 L 509.6,400.5 L 537.6,399.7 L 535.3,408.5 L 522.4,410.3 L 521.3,414.7 L 514.3,414.7 L 506.1,420.9 L 504.9,431.5 L 513.1,436.8 L 530.6,436.8 L 533.0,441.2 L 547.0,443.0 L 552.8,447.4 L 552.8,458.9 L 542.3,464.2 L 543.5,470.4 L 565.7,477.5 L 598.4,473.1 L 605.4,460.7 L 613.6,456.3 L 635.8,453.6 L 640.5,446.5 L 682.5,445.6 L 687.2,430.6 L 693.0,426.2 L 691.9,418.2 L 684.9,412.0 L 669.7,411.2 L 662.7,417.3 L 633.5,418.2 L 633.5,411.2 L 627.6,411.2 L 624.1,404.1 L 619.4,403.2 L 617.1,392.6 L 627.6,390.8 L 628.8,385.5 L 656.8,370.5 L 674.3,369.6 L 679.0,364.3 L 698.9,363.4 L 703.6,355.4 L 716.4,355.4 L 723.4,344.8 L 750.3,343.9 L 756.1,317.4 L 769.0,313.9 L 777.2,303.3 L 807.6,301.5 L 811.1,298.0 L 811.1,285.6 L 816.9,278.5 L 809.9,264.4 L 811.1,255.5 L 814.6,255.5 L 811.1,236.9 L 815.7,232.5 L 813.4,212.2 L 806.4,208.6 L 790.0,211.3 L 786.5,206.0 L 771.3,204.2 L 769.0,200.7 L 751.5,201.6 L 731.6,193.6 L 721.1,198.0 L 710.6,197.1 L 710.6,185.6 L 702.4,180.3 L 690.7,179.5 L 682.5,186.5 L 670.8,186.5 L 666.2,191.0 L 656.8,191.0 L 644.0,184.8 L 625.3,183.9 L 615.9,159.1 L 608.9,158.2 L 605.4,152.9 L 577.4,149.4 L 579.7,125.5 L 565.7,117.6 L 564.5,108.7 L 552.8,100.7 L 520.1,99.0 L 515.4,104.3 L 495.6,100.7 L 485.1,113.1 L 438.3,116.7 L 424.3,142.3 L 390.4,143.2 L 382.2,135.2 L 363.5,136.1 L 362.4,138.8 L 347.2,135.2 L 311.0,134.4 L 308.6,127.3 L 285.2,127.3 L 274.7,120.2 L 199.9,116.7 L 185.9,120.2 L 184.8,125.5 L 171.9,124.6 L 171.9,121.1 L 167.2,121.1 L 163.7,127.3 Z"
+              fill="rgba(229,57,53,0.07)" stroke="#E53935" strokeWidth="1.6" strokeLinejoin="round" strokeLinecap="round"/>
+          </svg>
         </div>
-        <Link href="https://t.me/zahid_ads" target="_blank" rel="noopener" className="hero-cta sweep-btn">
-          Замовити рекламу →
-        </Link>
+      
+        <div className="hero-content">
+          <div className="hero-eyebrow">Telegram-медіа · 2026</div>
+          <h1 className="hero-title">
+            МЕРЕЖА<br /><span className="hero-title-red">ГОЛОВНЕ</span>
+          </h1>
+          <p className="hero-sub">Створюємо та запускаємо медіа, якому довіряють по всій країні.</p>
+          
+          <div className="hero-stats">
+            <div className="hero-stat">
+              <div className="hero-stat-num">2<span style={{color: "var(--white)"}}>,</span>5<span style={{fontSize: "0.5em", color: "var(--white)"}}> млн</span></div>
+              <div className="hero-stat-label">підписників</div>
+            </div>
+            <div className="hero-stat">
+              <div className="hero-stat-num">600<span style={{fontSize: "0.45em", color: "var(--white)"}}> тис+</span></div>
+              <div className="hero-stat-label">добове охоплення</div>
+            </div>
+            <div className="hero-stat">
+              <div className="hero-stat-num">31<span style={{color: "var(--white)"}}>%</span></div>
+              <div className="hero-stat-label">середній ERR</div>
+            </div>
+          </div>
+        </div>
+      
         <div className="hero-scroll">
           <span>Гортай</span>
-          <div className="scroll-line" />
+          <div className="scroll-line"></div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   )
 }

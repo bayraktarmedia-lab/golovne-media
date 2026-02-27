@@ -1,6 +1,5 @@
+import Scripts from '@/components/ui/Scripts'
 import Nav from '@/components/ui/Nav'
-import CursorDot from '@/components/ui/CursorDot'
-import RevealObserver from '@/components/ui/RevealObserver'
 import Hero from '@/components/sections/Hero'
 import About from '@/components/sections/About'
 import Engagement from '@/components/sections/Engagement'
@@ -18,9 +17,7 @@ const jsonLd = {
   name: 'Мережа Головне',
   description: 'Найбільша регіональна Telegram-медіамережа України. 25 каналів, 2.5 млн підписників.',
   url: 'https://holovne.media',
-  contactPoint: [
-    { '@type': 'ContactPoint', contactType: 'advertising', identifier: '@zahid_ads' },
-  ],
+  contactPoint: [{ '@type': 'ContactPoint', contactType: 'advertising', identifier: '@zahid_ads' }],
   foundingDate: '2020',
   areaServed: 'UA',
 }
@@ -29,8 +26,7 @@ export default function Home() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <CursorDot />
-      <RevealObserver />
+      <Scripts />
       <Nav />
       <main>
         <Hero />
