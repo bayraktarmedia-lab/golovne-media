@@ -52,9 +52,9 @@ export default function Engagement() {
       
                 
                 <div className="carousel-dots">
-                  <div className="carousel-dot active" onClick={() => (window as any).goToSlide(0)}}></div>
-                  <div className="carousel-dot" onClick={() => (window as any).goToSlide(1)}}></div>
-                  <div className="carousel-dot" onClick={() => (window as any).goToSlide(2)}}></div>
+                  <div className="carousel-dot active" onClick={() => (window as any).goToSlide(0)}></div>
+                  <div className="carousel-dot" onClick={() => (window as any).goToSlide(1)}></div>
+                  <div className="carousel-dot" onClick={() => (window as any).goToSlide(2)}></div>
                 </div>
               </div>
             </div>

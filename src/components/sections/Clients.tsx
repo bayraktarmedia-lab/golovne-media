@@ -74,8 +74,6 @@ export default function Clients() {
             <div className="marquee-item"><img src="/logos/apteka-911.png" alt="Аптека 911" /></div>
             </div>
           </div>
-          </div>
-          </div>
         </div>
       </section>
     </>
