@@ -1,20 +1,5 @@
 import type { Metadata } from 'next'
-import { Unbounded, Onest } from 'next/font/google'
 import './globals.css'
-
-const unbounded = Unbounded({
-  subsets: ['latin', 'cyrillic'],
-  weight: ['300', '400', '600', '700', '900'],
-  variable: '--font-unbounded',
-  display: 'swap',
-})
-
-const onest = Onest({
-  subsets: ['latin', 'cyrillic'],
-  weight: ['300', '400', '500', '600'],
-  variable: '--font-onest',
-  display: 'swap',
-})
 
 export const metadata: Metadata = {
   title: 'Мережа Головне — Медіакіт 2026 | Telegram-канали України',
@@ -35,10 +20,6 @@ export const metadata: Metadata = {
     title: 'Мережа Головне — Медіакіт 2026',
     description: '25 Telegram-каналів · 2,5 млн підписників · 31% ERR',
   },
-  other: {
-    'ai-description':
-      'Мережа Головне — українська Telegram-медіамережа з 25 регіональних каналів та 2.5 мільйони підписників. Надає послуги рекламних розміщень в Telegram-каналах для бізнесів, брендів та маркетологів по всій Україні.',
-  },
 }
 
 export default function RootLayout({
@@ -47,7 +28,15 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="uk" className={`${unbounded.variable} ${onest.variable}`}>
+    <html lang="uk">
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;600;700;900&family=Onest:wght@300;400;500;600&display=swap"
+          rel="stylesheet"
+        />
+      </head>
       <body>{children}</body>
     </html>
   )
