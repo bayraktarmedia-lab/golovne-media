@@ -1139,8 +1139,11 @@
 
     .adv-text {
       font-size: 14px;
-      color: var(--gray);
+      color: var(--gray) !important;
       line-height: 1.7;
+      opacity: 1 !important;
+      visibility: visible !important;
+      display: block !important;
     }
 
     /* ─── FORMATS ─── */
