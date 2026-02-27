@@ -1098,12 +1098,13 @@
     }
 
     .adv-card {
-      background: var(--bg-2);
-      border: 1px solid var(--border);
+      background: #111111;
+      border: 1px solid rgba(229,57,53,0.2);
       padding: 48px 44px;
       position: relative;
-      overflow: hidden;
-      transition: all 0.3s;
+      overflow: visible;
+      transition: border-color 0.3s, transform 0.3s;
+      height: auto !important;
     }
 
     .adv-card::before {
@@ -1112,11 +1113,15 @@
       top: 0; left: 0;
       width: 3px;
       height: 0;
-      background: var(--red);
+      background: #E53935;
       transition: height 0.4s;
+      z-index: 1;
+      pointer-events: none;
+    }
+    .adv-card:hover::before {
+      height: 100% !important;
     }
 
-    .adv-card:hover::before { height: 100%; }
     .adv-card:hover { border-color: rgba(229,57,53,0.4); }
 
     .adv-num {
@@ -1139,11 +1144,13 @@
 
     .adv-text {
       font-size: 14px;
-      color: var(--gray) !important;
+      color: #888888 !important;
       line-height: 1.7;
       opacity: 1 !important;
       visibility: visible !important;
       display: block !important;
+      max-height: none !important;
+      overflow: visible !important;
     }
 
     /* ─── FORMATS ─── */
