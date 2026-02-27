@@ -22,8 +22,8 @@ export default function Formats() {
               <h3 className="format-title">{f.title}</h3>
               <div className="format-divider" />
               <p className="format-desc">{f.desc}</p>
-              {'desc2' in f && f.desc2 && <p className="format-desc" style={{ marginTop: 12 }}>{f.desc2}</p>}
-              {'exampleUrl' in f && f.exampleUrl && (
+              {f.desc2 && <p className="format-desc" style={{ marginTop: 12 }}>{f.desc2}</p>}
+              {f.exampleUrl && (
                 <Link href={f.exampleUrl} target="_blank" rel="noopener" className="format-example">
                   Приклад рекламного розміщення →
                 </Link>
