@@ -25,7 +25,7 @@ export default function Formats() {
                 <li>— Інфопродуктам</li>
                 <li>— тощо</li>
               </ul>
-              <a href="https://t.me/zahid_ads" target="_blank" rel="noopener" className="format-btn">Обираю це →</a>
+              <a href="https://t.me/golovne_ads" target="_blank" rel="noopener" className="format-btn">Обираю це →</a>
             </div>
       
             <div className="format-card reveal">
@@ -40,7 +40,7 @@ export default function Formats() {
                 <li>— Національним брендам</li>
                 <li>— Організаторам івентів</li>
               </ul>
-              <a href="https://t.me/zahid_ads" target="_blank" rel="noopener" className="format-btn">Обираю це →</a>
+              <a href="https://t.me/golovne_ads" target="_blank" rel="noopener" className="format-btn">Обираю це →</a>
             </div>
       
             <div className="format-card format-card--featured reveal">
@@ -60,7 +60,7 @@ export default function Formats() {
                 <li>— Публічним особам</li>
                 <li>— Національним брендам</li>
               </ul>
-              <a href="https://t.me/zahid_ads" target="_blank" rel="noopener" className="format-btn">Обираю це →</a>
+              <a href="https://t.me/golovne_ads" target="_blank" rel="noopener" className="format-btn">Обираю це →</a>
             </div>
       
           </div>
