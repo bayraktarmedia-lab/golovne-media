@@ -12,7 +12,7 @@ export default function CTA() {
               <div className="cta-manager-label">Рекламний менеджер</div>
             </div>
       
-            <a href="https://t.me/zahid_ads" target="_blank" rel="noopener" className="cta-btn reveal">Замовити рекламу →</a>
+            <a href="https://t.me/golovne_ads" target="_blank" rel="noopener" className="cta-btn reveal">Замовити рекламу →</a>
           </div>
         </div>
       </section>
