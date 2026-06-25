@@ -1,0 +1,7 @@
+node_modules/
+.next/
+_design_ref/
+_serve/
+_serve_v1/
+_*.py
+*.bak.*
