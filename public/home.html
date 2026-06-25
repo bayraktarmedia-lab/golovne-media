@@ -163,6 +163,14 @@ html,body{overflow-x:hidden;max-width:100%;}
   #logos-strip .litem{padding:18px 26px!important;}
   .litem img{height:26px!important;}
 }
+
+#ch-more{display:none;margin:18px auto 0;padding:13px 26px;background:var(--accent);color:#fff;font-weight:600;font-size:14px;border:0;border-radius:12px;cursor:pointer;font-family:'Onest',sans-serif;}
+@media(max-width:760px){
+  #ch-more{display:block;}
+  #testimonials .tgrid{column-count:unset!important;column-gap:0!important;display:flex!important;overflow-x:auto;scroll-snap-type:x mandatory;gap:14px;padding-bottom:10px;-webkit-overflow-scrolling:touch;}
+  #testimonials .tgrid::-webkit-scrollbar{display:none;}
+  #testimonials .tcard{flex:0 0 85%!important;scroll-snap-align:center;margin:0!important;}
+}
 </style></head>
 <body>
 <div id="dc-root"><div class="sc-host" data-sc-name="Root"><nav data-dc-tpl="5" style="position: sticky; top: 0px; z-index: 60; background: color-mix(in srgb,var(--canvas) 58%,transparent); backdrop-filter: blur(22px) saturate(180%); border-bottom: 1px solid rgba(255, 255, 255, 0.1); box-shadow: rgba(0, 0, 0, 0.18) 0px 8px 30px, rgba(255, 255, 255, 0.1) 0px 1px 0px inset;">
@@ -302,10 +310,10 @@ html,body{overflow-x:hidden;max-width:100%;}
       
         <a data-dc-tpl="150" href="https://t.me/bayranews" target="_blank" class="scp2" style="position: relative; display: flex; flex-direction: column; gap: 13px; padding: 16px; background: var(--canvas); transition: background 0.2s;"><span data-dc-tpl="151" class="ch-badge" style="display: none;"><span class="sc-interp"></span></span>
           <div data-dc-tpl="152" style="border-radius: 12px; overflow: hidden; background: rgb(255, 255, 255); border: 1px solid var(--hairline);">
-            <img data-dc-tpl="153" src="/assets/channels/bayranews.jpg" alt="Байрактар News · Україна" style="width: 100%; aspect-ratio: 1 / 1; object-fit: cover;">
+            <img data-dc-tpl="153" src="/assets/channels/bayranews.jpg" alt="Україна Головне" style="width: 100%; aspect-ratio: 1 / 1; object-fit: cover;">
           </div>
           <div data-dc-tpl="154">
-            <div data-dc-tpl="155" style="font-weight: 600; font-size: 15px; letter-spacing: -0.01em;"><span class="sc-interp">Байрактар News · Україна</span></div>
+            <div data-dc-tpl="155" style="font-weight: 600; font-size: 15px; letter-spacing: -0.01em;"><span class="sc-interp">Україна Головне</span></div>
             <div data-dc-tpl="156" style="margin-top: 4px; font-size: 12.5px; color: var(--muted); line-height: 1.4;"><span class="sc-interp">Головний агрегатор новин України</span></div>
           </div>
           <div data-dc-tpl="157" style="margin-top: auto; display: flex; align-items: center; justify-content: space-between; font-size: 12.5px; color: var(--accent); font-weight: 500;">
@@ -326,7 +334,7 @@ html,body{overflow-x:hidden;max-width:100%;}
           </div>
         </a>
       
-        <a data-dc-tpl="150" href="https://t.me/kyiv_golovne" target="_blank" class="scp2" style="position: relative; display: flex; flex-direction: column; gap: 13px; padding: 16px; background: var(--canvas); transition: background 0.2s;"><span data-dc-tpl="151" class="ch-badge"><span class="sc-interp">ТОП-1 міста</span></span>
+        <a data-dc-tpl="150" href="https://t.me/kyiv_golovne" target="_blank" class="scp2" style="position: relative; display: flex; flex-direction: column; gap: 13px; padding: 16px; background: var(--canvas); transition: background 0.2s;"><span data-dc-tpl="151" class="ch-badge"><span class="sc-interp">ТОП-8 міста</span></span>
           <div data-dc-tpl="152" style="border-radius: 12px; overflow: hidden; background: rgb(255, 255, 255); border: 1px solid var(--hairline);">
             <img data-dc-tpl="153" src="/assets/channels/kyiv.jpg" alt="Київ Головне" style="width: 100%; aspect-ratio: 1 / 1; object-fit: cover;">
           </div>
@@ -756,7 +764,7 @@ html,body{overflow-x:hidden;max-width:100%;}
       <span data-dc-tpl="205" style="width: 26px; height: 2px; background: var(--accent);"></span>Переваги
     </div>
     <h2 data-dc-tpl="206" style="margin: 24px 0px 0px; font-weight: 500; font-size: clamp(34px, 5.2vw, 80px); line-height: 0.96; letter-spacing: -0.03em;" data-rv="1" class="rv">Чому <span data-dc-tpl="207" style="font-style: italic; font-weight: 800;">обирають нас</span></h2>
-    <div data-dc-tpl="208" style="margin-top: clamp(40px, 4vw, 64px); display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1px; background: var(--hairline); border: 1px solid var(--hairline);">
+    <div data-dc-tpl="208" id="chGrid" style="margin-top: clamp(40px, 4vw, 64px); display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1px; background: var(--hairline); border: 1px solid var(--hairline);">
       
         <div data-dc-tpl="210" style="background: var(--canvas); padding: clamp(26px, 3vw, 40px); min-height: 230px; display: flex; flex-direction: column;">
           <div data-dc-tpl="211" style="font-weight: 600; font-size: 14px; color: var(--accent);"><span class="sc-interp">01</span></div>
@@ -880,9 +888,9 @@ class Component extends DCLogic {
         { num: '04', title: 'Пріоритет для партнерів', desc: 'Доступ до пріоритетних дат розміщення та індивідуальних умов співпраці. Окремі переваги для постійних партнерів.' },
       ],
       channels: [
-        { name: 'Байрактар News · Україна', handle: '@bayranews', url: 'https://t.me/bayranews', img: 'assets/channels/bayranews.jpg', desc: 'Головний агрегатор новин України', badge: '' },
+        { name: 'Україна Головне', handle: '@bayranews', url: 'https://t.me/bayranews', img: 'assets/channels/bayranews.jpg', desc: 'Головний агрегатор новин України', badge: '' },
         { name: 'Захід Головне', handle: '@zahid_golovne_ua', url: 'https://t.me/zahid_golovne_ua', img: 'assets/channels/zahid.jpg', desc: 'Найбільший регіональний канал заходу України', badge: 'ТОП-1 області' },
-        { name: 'Київ Головне', handle: '@kyiv_golovne', url: 'https://t.me/kyiv_golovne', img: 'assets/channels/kyiv.jpg', desc: 'Оперативні новини Києва та області', badge: 'ТОП-1 міста' },
+        { name: 'Київ Головне', handle: '@kyiv_golovne', url: 'https://t.me/kyiv_golovne', img: 'assets/channels/kyiv.jpg', desc: 'Оперативні новини Києва та області', badge: 'ТОП-8 міста' },
         { name: 'Рівне Головне', handle: '@rivne_golovne', url: 'https://t.me/rivne_golovne', img: 'assets/channels/rivne.jpg', desc: 'Головні новини Рівного та області', badge: 'ТОП-1 міста' },
         { name: 'Львів Головне', handle: '@lviv_golovne', url: 'https://t.me/lviv_golovne', img: 'assets/channels/lviv.jpg', desc: 'Актуальні події Львова та області', badge: 'ТОП-4 міста' },
         { name: 'Дніпро Головне', handle: '@dnipro_main', url: 'https://t.me/dnipro_main', img: 'assets/channels/dnipro.jpg', desc: 'Новини Дніпра та Дніпропетровщини', badge: 'ТОП-9 міста' },
@@ -959,9 +967,22 @@ class Component extends DCLogic {
         if(el.dataset.rv) return; el.dataset.rv='1'; el.classList.add('rv'); io2.observe(el);
       });
     }
+    function chShowMore(){
+      var sec=document.getElementById('channels'); if(!sec||sec.dataset.more) return;
+      var cards=[].slice.call(sec.querySelectorAll('a[href*="://t.me/"]'));
+      if(cards.length<=8) return;
+      if(!window.matchMedia('(max-width:760px)').matches) return;
+      sec.dataset.more='1';
+      cards.forEach(function(c,i){ if(i>=8) c.style.display='none'; });
+      var grid=cards[0].parentNode;
+      var btn=document.createElement('button'); btn.id='ch-more'; btn.type='button';
+      btn.textContent='Показати всі канали ('+cards.length+')';
+      btn.addEventListener('click',function(){ cards.forEach(function(c){c.style.display='';}); btn.remove(); });
+      grid.parentNode.insertBefore(btn, grid.nextSibling);
+    }
     function hideEmptyBadges(){ var bs=document.querySelectorAll('.ch-badge'); for(var i=0;i<bs.length;i++){ var t=(bs[i].textContent||'').trim(); bs[i].style.display = t ? '' : 'none'; } }
-    scan(); hideEmptyBadges();
-    setTimeout(function(){scan();hideEmptyBadges();},800); setTimeout(function(){scan();hideEmptyBadges();},1800); setTimeout(function(){scan();hideEmptyBadges();},3200);
+    scan(); hideEmptyBadges(); chShowMore();
+    setTimeout(function(){scan();hideEmptyBadges();chShowMore();},800); setTimeout(function(){scan();hideEmptyBadges();chShowMore();},1800); setTimeout(function(){scan();hideEmptyBadges();chShowMore();},3200);
   }
   ready(run);
 })();
