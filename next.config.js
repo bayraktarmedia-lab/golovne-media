@@ -7,6 +7,8 @@ const nextConfig = {
     return {
       beforeFiles: [
         { source: '/', destination: '/home.html' },
+        { source: '/kanaly', destination: '/kanaly.html' },
+        { source: '/kanaly/', destination: '/kanaly.html' },
       ],
     }
   },
@@ -14,6 +16,8 @@ const nextConfig = {
     return [
       { source: '/', headers: [{ key: 'Cache-Control', value: 'public, max-age=0, must-revalidate' }] },
       { source: '/home.html', headers: [{ key: 'Cache-Control', value: 'public, max-age=0, must-revalidate' }] },
+      { source: '/kanaly', headers: [{ key: 'Cache-Control', value: 'public, max-age=0, must-revalidate' }] },
+      { source: '/kanaly/', headers: [{ key: 'Cache-Control', value: 'public, max-age=0, must-revalidate' }] },
     ]
   },
 }
