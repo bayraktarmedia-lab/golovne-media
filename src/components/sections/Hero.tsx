@@ -38,7 +38,7 @@ export default function Hero() {
               <div className="hero-stat-label">підписників</div>
             </div>
             <div className="hero-stat">
-              <div className="hero-stat-num">600<span style={{fontSize: "0.45em", color: "var(--white)"}}> тис+</span></div>
+              <div className="hero-stat-num">700<span style={{fontSize: "0.45em", color: "var(--white)"}}> тис+</span></div>
               <div className="hero-stat-label">добове охоплення</div>
             </div>
             <div className="hero-stat">

@@ -15,7 +15,7 @@ const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
   name: 'Мережа Головне',
-  description: 'Найбільша регіональна Telegram-медіамережа України. 25 каналів, 2.5 млн підписників.',
+  description: 'Найбільша регіональна Telegram-медіамережа України. 25 каналів, 3 млн підписників.',
   url: 'https://holovne.media',
   contactPoint: [{ '@type': 'ContactPoint', contactType: 'advertising', identifier: '@golovne_ads' }],
   foundingDate: '2020',

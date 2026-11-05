@@ -47,7 +47,7 @@ export default function Formats() {
               <div className="format-num">03</div>
               <h3 className="format-title">Оптові розміщення</h3>
               <div className="format-divider"></div>
-              <p className="format-desc">Ви можете запустити рекламу, яку побачить більше 600 000 осіб за добу та отримати максимальні охоплення чи конверсії.</p>
+              <p className="format-desc">Ви можете запустити рекламу, яку побачить більше 700 000 осіб за добу та отримати максимальні охоплення чи конверсії.</p>
               <p className="format-desc" style={{marginTop: "12px"}}>Перевага в тому, що для оптових розміщень діють унікальні умови. Тому ви не лише отримаєте багато охоплень, але й економите кошти.</p>
               <div className="format-list-label">Кому підійде:</div>
               <ul className="format-list">

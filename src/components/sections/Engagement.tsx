@@ -12,7 +12,7 @@ export default function Engagement() {
           <div className="engagement-inner">
             <div className="engagement-stats reveal">
               <div className="engagement-stat">
-                <div className="stat-big">31%</div>
+                <div className="stat-big">28%</div>
                 <div className="stat-desc">Середня залученість<br />(ERR)</div>
               </div>
               <div className="engagement-stat">
